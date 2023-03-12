@@ -69,17 +69,6 @@ NEIGHBORING_LETTERS = {
     #'^' : ['¨', '$'],
     #'$' : ['^', '*'],
     #'*' : ['$', 'ù'],
-    # CUSTOM DIGITS UPPER
-    '1': ['2', '&', '³'],
-    '2': ['1', '3', 'é'],
-    '3': ['2', '4', '"'],
-    '4': ['3', '5', "'"],
-    '5': ['4', '6', '('],
-    '6': ['5', '7', '-'],
-    '7': ['6', '8', 'è'],
-    '8': ['7', '9', '_'],
-    '9': ['8', '0', 'ç'],
-    '0': ['9', 'à', '°'],
     # CUSTOM ALT GR
     # todo
 }
@@ -96,6 +85,20 @@ NEIGHBORING_NUMPAD_DIGITS = {
     '8': ['7', '4', '5', '6', '9'],
     '9': ['8', '5', '6']
 }
+
+NEIGHBORING_DIGITS = { # using AZERTY keyboard layout
+    '1': ['2', '&', '³'],
+    '2': ['1', '3', 'é'],
+    '3': ['2', '4', '"'],
+    '4': ['3', '5', "'"],
+    '5': ['4', '6', '('],
+    '6': ['5', '7', '-'],
+    '7': ['6', '8', 'è'],
+    '8': ['7', '9', '_'],
+    '9': ['8', '0', 'ç'],
+    '0': ['9', 'à', '°'],
+}
+
 
 VISUALLY_SIMILAR_DIGITS = {
     '0': ['6', '8', '9'],
@@ -228,12 +231,7 @@ def get_random_neighbor(char, seed=None):
         if numpad:
             return random.choice(NEIGHBORING_NUMPAD_DIGITS[char])
         else:
-            if char == '0':
-                return '9'
-            elif char == '1':
-                return '2'
-            else:
-                return str(int(char) + (-1) ** random.randint(0, 1))
+            return random.choice(NEIGHBORING_DIGITS[char])
     elif char.lower() in NEIGHBORING_LETTERS:
         neighbor = random.choice(NEIGHBORING_LETTERS[char.lower()])
         return neighbor.upper() if char.isupper() else neighbor
