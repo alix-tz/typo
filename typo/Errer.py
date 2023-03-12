@@ -1,7 +1,7 @@
 import random
 import re
 import datetime
-from typo.keyboardlayouts import en_default
+from typo.keyboardlayouts import fr_azerty
 
 
 class StrErrer:
@@ -66,7 +66,7 @@ class StrErrer:
         if len(locations) > 0:
             location = locations[random.randint(0, len(locations) - 1)]
             trigger_char = strval[location]
-            char_to_add = en_default.get_random_neighbor(trigger_char)
+            char_to_add = fr_azerty.get_random_neighbor(trigger_char)
             self.result = strval[:location] + char_to_add + strval[location:]
         return self
 
@@ -81,7 +81,7 @@ class StrErrer:
         if len(locations) > 0:
             location = locations[random.randint(0, len(locations) - 1)]
             char_to_replace = strval[location]
-            replace_with = en_default.get_random_neighbor(char_to_replace)
+            replace_with = fr_azerty.get_random_neighbor(char_to_replace)
             # preserve case of the replaced character
             replace_with = replace_with.upper() if char_to_replace.isupper() else replace_with.lower()
             self.result = strval[:location] + replace_with + strval[location + 1:]
@@ -98,7 +98,7 @@ class StrErrer:
         if len(locations) > 0:
             location = locations[random.randint(0, len(locations) - 1)]
             char_to_replace = strval[location]
-            replace_with = en_default.get_random_visually_similar_char(char_to_replace)
+            replace_with = fr_azerty.get_random_visually_similar_char(char_to_replace)
             self.result = strval[:location] + replace_with + strval[location + 1:]
         return self
 
@@ -234,7 +234,7 @@ class IntErrer:
         strval = str(self.magnitude)
         location = random.randint(0, len(strval) - 1)
         digit_to_replace = strval[location]
-        replace_with = en_default.get_random_visually_similar_digit(digit_to_replace)
+        replace_with = fr_azerty.get_random_visually_similar_digit(digit_to_replace)
         self.magnitude = int(strval[:location] + replace_with + strval[location + 1:])
         return self
 
