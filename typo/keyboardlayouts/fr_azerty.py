@@ -239,6 +239,32 @@ def get_random_neighbor(char, seed=None):
         return char
 
 
+def get_random_diactrics(char, seed=None):
+    if seed is not None:
+        random.seed(seed)
+
+    if len(char) != 1:
+        raise Exception("Need exactly one character to find a diactric")
+
+    if char in MESSING_WITH_DIACRITICS:
+        return random.choice(MESSING_WITH_DIACRITICS[char])
+    else:
+        return char
+
+
+def get_random_punctuation(char, seed=None):
+    if seed is not None:
+        random.seed(seed)
+
+    if len(char) != 1:
+        raise Exception("Need exactly one character to find a punctuation")
+
+    if char in MESSING_WITH_PUNCTUATION:
+        return random.choice(MESSING_WITH_PUNCTUATION[char])
+    else:
+        return char
+
+
 def get_random_visually_similar_char(char, seed=None):
     if seed is not None:
         random.seed(seed)
