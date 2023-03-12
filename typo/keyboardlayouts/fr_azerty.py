@@ -232,9 +232,9 @@ def get_random_neighbor(char, seed=None):
             return random.choice(NEIGHBORING_NUMPAD_DIGITS[char])
         else:
             return random.choice(NEIGHBORING_DIGITS[char])
-    elif char.lower() in NEIGHBORING_LETTERS:
-        neighbor = random.choice(NEIGHBORING_LETTERS[char.lower()])
-        return neighbor.upper() if char.isupper() else neighbor
+    elif char in NEIGHBORING_LETTERS:
+        neighbor = random.choice(NEIGHBORING_LETTERS[char])
+        return neighbor
     else:
         return char
 
