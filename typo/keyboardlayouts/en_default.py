@@ -1,6 +1,6 @@
 import random
 
-NEIGHBORINGLETTERS = {
+NEIGHBORING_LETTERS = {
     'a': ['q', 'w', 's', 'z'],
     'b': ['v', 'g', 'h', 'n'],
     'c': ['x', 'd', 'f', 'v'],
@@ -29,7 +29,7 @@ NEIGHBORINGLETTERS = {
     'z': ['a', 's', 'x'],
 }
 
-NEIGHBORINGNUMPADDIGITS = {
+NEIGHBORING_NUMPAD_DIGITS = {
     '0': ['1', '2'],
     '1': ['4', '5', '2', '0'],
     '2': ['0', '1', '4', '5', '6', '3'],
@@ -42,7 +42,7 @@ NEIGHBORINGNUMPADDIGITS = {
     '9': ['8', '5', '6']
 }
 
-VISUALLYSIMILARDIGITS = {
+VISUALLY_SIMILAR_DIGITS = {
     '0': ['6', '8', '9'],
     '1': ['7'],
     '2': ['7'],
@@ -55,7 +55,7 @@ VISUALLYSIMILARDIGITS = {
     '9': ['0', '3', '4']
 }
 
-VISUALLYSIMILARCHARS = {
+VISUALLY_SIMILAR_CHARS = {
     '0': ['6', '8', '9', 'o', 'D', 'O', 'U'],
     '1': ['7', 'I'],
     '2': ['7', 'Q', 'Z'],
@@ -115,7 +115,7 @@ def get_random_neighbor(char, seed=None):
     if char.isdecimal():
         numpad = random.choice([True, False])
         if numpad:
-            return random.choice(NEIGHBORINGNUMPADDIGITS[char])
+            return random.choice(NEIGHBORING_NUMPAD_DIGITS[char])
         else:
             if char == '0':
                 return '9'
@@ -123,8 +123,8 @@ def get_random_neighbor(char, seed=None):
                 return '2'
             else:
                 return str(int(char) + (-1) ** random.randint(0, 1))
-    elif char.lower() in NEIGHBORINGLETTERS:
-        neighbor = random.choice(NEIGHBORINGLETTERS[char.lower()])
+    elif char.lower() in NEIGHBORING_LETTERS:
+        neighbor = random.choice(NEIGHBORING_LETTERS[char.lower()])
         return neighbor.upper() if char.isupper() else neighbor
     else:
         return char
@@ -137,8 +137,8 @@ def get_random_visually_similar_char(char, seed=None):
     if len(char) != 1:
         raise Exception("Need exactly one character to find a visually similar character")
 
-    if char in VISUALLYSIMILARCHARS:
-        return random.choice((VISUALLYSIMILARCHARS[char]))
+    if char in VISUALLY_SIMILAR_CHARS:
+        return random.choice((VISUALLY_SIMILAR_CHARS[char]))
     else:
         return char
 
@@ -151,8 +151,8 @@ def get_random_visually_similar_digit(char, seed=None):
         raise Exception("Need exactly one character to find a visually similar digit")
 
     if char.isdigit():
-        if char in VISUALLYSIMILARDIGITS:
-            return random.choice((VISUALLYSIMILARDIGITS[char]))
+        if char in VISUALLY_SIMILAR_DIGITS:
+            return random.choice((VISUALLY_SIMILAR_DIGITS[char]))
         else:
             return char
     else:
