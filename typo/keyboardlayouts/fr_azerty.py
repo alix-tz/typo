@@ -162,11 +162,8 @@ VISUALLY_SIMILAR_CHARS = { # customized to visually similar handwritten chars
     'W': ['U'],
     'X': ['Y'],
     'Y': ['5', 'X'],
-    'Z': ['2', '7']
-}
-
-# CUSTOM
-MESSING_WITH_DIACRITICS = {
+    'Z': ['2', '7'],
+    # CUSTOM ACCENTUATED CHARS
     'é': ['e', 'è', 'ê', 'ë'],
     'è': ['é', 'ê', 'ë', 'e'],
     'ê': ['é', 'è', 'ë', 'e'],
@@ -196,10 +193,8 @@ MESSING_WITH_DIACRITICS = {
     'Ö': ['O', 'Ô'],
     'Ç': ['C'],
     'Î': ['I', 'Ï'],
-    'Ï': ['I', 'Î']
-}
-
-MESSING_WITH_PUNCTUATION = {
+    'Ï': ['I', 'Î'],
+    # VISUALLY SIMILAR PUNCT (or close enough)
     '.': [',', '!', '?', ';', ':'],
     ',': ['.', '!', '?', ';', ':'],
     '!': ['.', ',', '?', ';', ':'],
@@ -217,8 +212,7 @@ MESSING_WITH_PUNCTUATION = {
 }
 
 
-
-# Data type classes, and capitalization are preserved.
+# Data type classes, and capitalization are preserved. #custom: sort of!
 def get_random_neighbor(char, seed=None):
     if seed is not None:
         random.seed(seed)
@@ -235,32 +229,6 @@ def get_random_neighbor(char, seed=None):
     elif char in NEIGHBORING_LETTERS:
         neighbor = random.choice(NEIGHBORING_LETTERS[char])
         return neighbor
-    else:
-        return char
-
-
-def get_random_diactrics(char, seed=None):
-    if seed is not None:
-        random.seed(seed)
-
-    if len(char) != 1:
-        raise Exception("Need exactly one character to find a diactric")
-
-    if char in MESSING_WITH_DIACRITICS:
-        return random.choice(MESSING_WITH_DIACRITICS[char])
-    else:
-        return char
-
-
-def get_random_punctuation(char, seed=None):
-    if seed is not None:
-        random.seed(seed)
-
-    if len(char) != 1:
-        raise Exception("Need exactly one character to find a punctuation")
-
-    if char in MESSING_WITH_PUNCTUATION:
-        return random.choice(MESSING_WITH_PUNCTUATION[char])
     else:
         return char
 
