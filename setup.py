@@ -15,8 +15,8 @@ setup(
     description='A python package to simulate typographical errors.',
     long_description=README,
     long_description_content_type="text/markdown",
-    url='https://github.com/ranvijaykumar/typo',
-    author='Ranvijay Kumar',
+    url='https://github.com/alix-tz/typo',
+    author='Ranvijay Kumar, Alix Chagué',
     license='MIT',
     classifiers=[
         "License :: OSI Approved :: MIT License",
